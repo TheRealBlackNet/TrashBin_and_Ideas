@@ -1,0 +1,175 @@
+[gd_scene load_steps=3 format=3 uid="uid://dps6e17lqvcm6"]
+
+[ext_resource type="Script" uid="uid://b3fu7bis1l2mj" path="res://bat_wing.gd" id="1_batwing"]
+[ext_resource type="Shader" uid="uid://dm48e0gvjmnk6" path="res://bat_wing_skin.gdshader" id="2_skin"]
+
+[node name="WingTest" type="Node3D"]
+
+[node name="WING" type="Node3D" parent="."]
+script = ExtResource("1_batwing")
+skin_shader = ExtResource("2_skin")
+scallop_depths = PackedFloat32Array(0.13, 0.2, 0.195, 0.18)
+
+[node name="Controller" type="Node3D" parent="WING"]
+
+[node name="WING_TARGET" type="Node3D" parent="WING/Controller"]
+transform = Transform3D(0.911432, -0.41145074, 0, 0.41145074, 0.911432, 0, 0, 0, 1, 3.3868299, -0.44448495, 1.1662191)
+
+[node name="WING_CURVE_Z" type="Node3D" parent="WING/Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6636, -1.5985284, -0.070186734)
+
+[node name="WING_CURVE_TANGENT" type="Node3D" parent="WING/Controller/WING_CURVE_Z"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07908702, 0, 0)
+
+[node name="WING_DIRECTION_UP" type="Node3D" parent="WING/Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6258655, 0.2197299, 0.6700661)
+
+[node name="FLESH_CURVES" type="Node3D" parent="WING/Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017463207, 0)
+
+[node name="skin_base-to-END_POINT_PF" type="Node3D" parent="WING/Controller/FLESH_CURVES"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42836523, -0.56766325, 0)
+
+[node name="END_POINT_PF-to-END_POINT_RF" type="Node3D" parent="WING/Controller/FLESH_CURVES"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6486658, -0.80102754, 0)
+
+[node name="END_POINT_RF2-to-END_POINT_MF" type="Node3D" parent="WING/Controller/FLESH_CURVES"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0417523, -0.6191497, 0)
+
+[node name="END_POINT_MF2-to-END_POINT_IF" type="Node3D" parent="WING/Controller/FLESH_CURVES"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5421116, -0.20518333, 0)
+
+[node name="shoulder_nob" type="CSGSphere3D" parent="WING"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0013022125, 0)
+radius = 0.05
+
+[node name="skin_base_point" type="CSGSphere3D" parent="WING"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.28603613, 0)
+radius = 0.030753374
+
+[node name="ROTATION_POINT_1" type="Node3D" parent="WING"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0013022125, 0)
+
+[node name="upper_arm_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1"]
+transform = Transform3D(0.046548516, 0.99891615, 0, -0.99891615, 0.046548516, 0, 0, 0, 1, 0.31947392, 0.016805649, 0)
+radius = 0.03
+height = 0.561
+
+[node name="ROTATION_POINT_2" type="Node3D" parent="WING/ROTATION_POINT_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6261349, 0.035129696, 0)
+
+[node name="lower_arm_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2"]
+transform = Transform3D(0.16461721, 0.9863576, 0, -0.9863576, 0.16461721, 0, 0, 0, 1, 0.49107683, 0.08941014, 0)
+radius = 0.02
+height = 0.9824531
+
+[node name="hand_nob" type="CSGSphere3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99093235, 0.17570639, 0)
+radius = 0.030753374
+
+[node name="ROTATION_POINT_TF_3" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2"]
+transform = Transform3D(0.13912125, -0.9902753, 0, 0.9902753, 0.13912125, 0, 0, 0, 1, 0.98611915, 0.16934559, 0)
+
+[node name="hand_thumb_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_TF_3"]
+transform = Transform3D(-0.25265855, 0.96754736, 0, -0.96754736, -0.25265855, 0, 0, 0, 1, 0.07947151, -0.02836597, 0)
+radius = 0.01
+height = 0.077417016
+
+[node name="ROTATION_POINT_TF_4" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_TF_3"]
+transform = Transform3D(0.89526933, 0.44552615, 0, -0.44552615, 0.89526933, 0, 0, 0, 1, 0.1233882, -0.03955996, 0)
+
+[node name="thumb_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_TF_3/ROTATION_POINT_TF_4"]
+transform = Transform3D(-0.36943722, 0.9292498, 0, -0.9292498, -0.36943722, 0, 0, 0, 1, 0.05049324, -0.022481918, 0)
+radius = 0.007
+height = 0.10244143
+
+[node name="ROTATION_POINT_IF_3" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2"]
+transform = Transform3D(0.98266786, -0.18537506, 0, 0.18537506, 0.98266786, 0, 0, 0, 1, 0.98611915, 0.16934559, 0)
+
+[node name="hand_index_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_IF_3"]
+transform = Transform3D(-0.25266057, 0.9675552, 0, -0.9675552, -0.25266057, 0, 0, 0, 1, 0.48948514, -0.110752895, 0)
+radius = 0.01
+height = 0.91445315
+
+[node name="ROTATION_POINT_IF_4" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_IF_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9412669, -0.2271654, 0)
+
+[node name="index_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_IF_3/ROTATION_POINT_IF_4"]
+transform = Transform3D(-0.36943877, 0.9292555, 0, -0.9292555, -0.36943877, 0, 0, 0, 1, 0.42936468, -0.17310762, 0)
+radius = 0.007
+height = 0.9178711
+
+[node name="END_POINT_IF" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_IF_3/ROTATION_POINT_IF_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8746855, -0.34685224, 0)
+
+[node name="ROTATION_POINT_MF_3" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98611915, 0.16934559, 0)
+
+[node name="hand_middle_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_MF_3"]
+transform = Transform3D(-0.25266057, 0.9675552, 0, -0.9675552, -0.25266057, 0, 0, 0, 1, 0.6276258, -0.14682609, 0)
+radius = 0.01
+height = 1.2
+
+[node name="ROTATION_POINT_MF_4" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_MF_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2159075, -0.30031347, 0)
+
+[node name="middle_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_MF_3/ROTATION_POINT_MF_4"]
+transform = Transform3D(-0.36943877, 0.9292553, 0, -0.9292553, -0.36943877, 0, 0, 0, 1, 0.5604496, -0.22522232, 0)
+radius = 0.007
+height = 1.2
+
+[node name="END_POINT_MF" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_MF_3/ROTATION_POINT_MF_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1271949, -0.45045605, 0)
+
+[node name="ROTATION_POINT_RF_3" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2"]
+transform = Transform3D(0.8043756, 0.5941211, 0, -0.5941211, 0.8043756, 0, 0, 0, 1, 0.98611915, 0.16934559, 0)
+
+[node name="hand_ring_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_RF_3"]
+transform = Transform3D(-0.2526605, 0.96755517, 0, -0.96755517, -0.2526605, 0, 0, 0, 1, 0.41781592, -0.0920378, 0)
+radius = 0.01
+height = 0.7663086
+
+[node name="ROTATION_POINT_RF_4" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_RF_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8032081, -0.18675452, 0)
+
+[node name="ring_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_RF_3/ROTATION_POINT_RF_4"]
+transform = Transform3D(-0.36943877, 0.9292555, 0, -0.9292555, -0.36943877, 0, 0, 0, 1, 0.38786995, -0.1566109, 0)
+radius = 0.007
+height = 0.82856447
+
+[node name="END_POINT_RF" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_RF_3/ROTATION_POINT_RF_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7827972, -0.31178707, 0)
+
+[node name="ROTATION_POINT_PF_3" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2"]
+transform = Transform3D(-0.4261267, 0.9046635, 0, -0.9046635, -0.4261267, 0, 0, 0, 1, 0.98611915, 0.16934559, 0)
+
+[node name="hand_pinky_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_PF_3"]
+transform = Transform3D(-0.2526605, 0.96755517, 0, -0.96755517, -0.2526605, 0, 0, 0, 1, 0.3802511, -0.08222866, 0)
+radius = 0.01
+height = 0.71077883
+
+[node name="ROTATION_POINT_PF_4" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_PF_3"]
+transform = Transform3D(0.96620995, -0.25775683, 0, 0.25775683, 0.96620995, 0, 0, 0, 1, 0.72801584, -0.17152166, 0)
+
+[node name="pinky_finger_bone" type="CSGCylinder3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_PF_3/ROTATION_POINT_PF_4"]
+transform = Transform3D(-0.36943853, 0.929254, 0, -0.929254, -0.36943853, 0, 0, 0, 1, 0.3498807, -0.14150774, 0)
+radius = 0.007
+height = 0.74680173
+
+[node name="END_POINT_PF" type="Node3D" parent="WING/ROTATION_POINT_1/ROTATION_POINT_2/ROTATION_POINT_PF_3/ROTATION_POINT_PF_4"]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0.7055629, -0.2838152, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.9820411, 0, 0.18866697, -0.008229538, 0.99904823, 0.042836033, -0.1884874, -0.043619387, 0.98110646, 2.77635, -0.5271646, 3.5594003)
+current = true
+fov = 47.42955
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1.0000001, 4.656613e-09, -1.4901161e-08, -6.519258e-09, 1, 0, 4.4703484e-08, 0, 1, 0.5146723, -0.5773953, -1.4862013)
+light_color = Color(0.4074723, 0.93082047, 0.94351065, 1)
+light_energy = 0.779
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1, 5.5879354e-09, -2.9802322e-08, -7.450581e-09, 1, 0, 5.9604645e-08, 0, 1, -2.2787924, 0.0076994896, -2.6185265)
+shadow_enabled = true
+omni_range = 2.9108515

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ckq8mjbe7fi02"]
+
+[ext_resource type="Script" uid="uid://c5flmlr7fsatl" path="res://test_save_it_by_browser.gd" id="1_qv82y"]
+
+[node name="TestSaveItByBrowser" type="Control" unique_id=1177111436]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qv82y")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=451108451]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=112159662]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer" unique_id=1481178553]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Dies ist ein Test Text
+wird in die Datei geschrieben.
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1643289659]
+layout_mode = 2
+
+[node name="loadBtn" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1914656734]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+text = "LADEN..."
+
+[node name="saveBtn" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1675386300]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+text = "SPEICHERN...
+"
+
+[node name="SAVE_FileDialog" type="FileDialog" parent="." unique_id=1874468184]
+unique_name_in_owner = true
+filters = PackedStringArray("*.txt;Test")
+use_native_dialog = true
+
+[node name="LOAD_FileDialog" type="FileDialog" parent="." unique_id=344550561]
+unique_name_in_owner = true
+title = "Open a File"
+file_mode = 0
+filters = PackedStringArray("*.txt;Test")
+use_native_dialog = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/loadBtn" to="." method="_on_load_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/saveBtn" to="." method="_on_save_btn_pressed"]

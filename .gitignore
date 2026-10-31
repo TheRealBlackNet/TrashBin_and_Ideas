@@ -1,0 +1,7 @@
+/save-test/.export
+/wing-test/ref
+# Redot 4+ specific ignores
+.godot/
+/android/
+/wing-test/*.mp4
+/wing-test/*.avi

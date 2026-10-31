@@ -1,0 +1,144 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwrqxgbp2koo"]
+
+[ext_resource type="Script" uid="uid://dffus1x4ttjji" path="res://tester.gd" id="1_jo7of"]
+[ext_resource type="Script" uid="uid://ds4kugyleo8wr" path="res://wav_library.gd" id="2_8cduc"]
+[ext_resource type="AudioStream" uid="uid://crfpa21543j11" path="res://res/Classical Vol 2 Music Pack/The Fair (RT 2.4)/The Fair Cut 60.wav" id="3_8cduc"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jo7of")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_8cduc")
+
+[node name="Sounds" type="OptionButton" parent="MarginContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = -10.0
+offset_bottom = 61.514015
+grow_horizontal = 2
+alignment = 1
+
+[node name="PLAY SOUND" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 87.0
+offset_right = 209.0
+offset_bottom = 145.0
+text = "PLAY SOUND
+"
+
+[node name="FORCE SOUND" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 88.0
+offset_right = 417.0
+offset_bottom = 146.0
+text = "FORCE SOUND
+"
+
+[node name="STOP SOUND" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 83.0
+offset_right = 634.0
+offset_bottom = 141.0
+text = "STOP SOUND
+"
+
+[node name="Music" type="OptionButton" parent="MarginContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98
+offset_left = 8.0
+offset_top = 293.0
+offset_right = 8.439941
+offset_bottom = 348.514
+
+[node name="Label" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 357.0
+offset_right = 79.0
+offset_bottom = 380.0
+text = "FADE"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 36.0
+offset_top = 382.0
+offset_right = -33.0
+offset_bottom = 398.0
+grow_horizontal = 2
+max_value = 10.0
+step = 0.5
+value = 1.5
+
+[node name="SET_MUSIC" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 431.0
+offset_right = 163.0
+offset_bottom = 497.0
+text = "SET MUSIC"
+
+[node name="FADE_MUSIC" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 169.0
+offset_top = 436.0
+offset_right = -168.0
+offset_bottom = 500.0
+grow_horizontal = 2
+text = "FADE MUSIC"
+
+[node name="STOP_MUSIC" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -155.0
+offset_top = 434.0
+offset_right = -17.0
+offset_bottom = 497.0
+grow_horizontal = 0
+text = "STOP MUSIC"
+
+[node name="TestPlayer" type="AudioStreamPlayer" parent="MarginContainer"]
+stream = ExtResource("3_8cduc")
+volume_db = -26.045
+mix_target = 2
+
+[connection signal="button_up" from="MarginContainer/Panel/PLAY SOUND" to="." method="_on_play_sound_button_up"]
+[connection signal="button_up" from="MarginContainer/Panel/FORCE SOUND" to="." method="_on_force_sound_button_up"]
+[connection signal="button_up" from="MarginContainer/Panel/STOP SOUND" to="." method="_on_stop_sound_button_up"]
+[connection signal="button_up" from="MarginContainer/Panel/SET_MUSIC" to="." method="_on_set_music_button_up"]
+[connection signal="button_up" from="MarginContainer/Panel/FADE_MUSIC" to="." method="_on_fade_music_button_up"]
+[connection signal="button_up" from="MarginContainer/Panel/STOP_MUSIC" to="." method="_on_stop_music_button_up"]
